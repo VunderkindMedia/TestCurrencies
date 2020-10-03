@@ -1,21 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {AppNavigation} from './navigation/AppNavigation';
+import 'react-native-gesture-handler';
+import {ActivityIndicator} from 'react-native'
+import {useFonts} from 'expo-font';
+import {AppState} from './context/AppState';
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    crypto: require('./assets/fonts/CryptoIcons.ttf'),
+  });
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      loaded ? <AppState><AppNavigation/></AppState>: <ActivityIndicator size='large' />
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
